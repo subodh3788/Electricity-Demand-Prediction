@@ -1,0 +1,43 @@
+<Head><script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script>
+    function validDate(){
+      var today = new Date().toISOString().split('T')[0];
+      var nextWeekDate = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      document.getElementsByName("date")[0].setAttribute('min', today);
+      document.getElementsByName("date")[0].setAttribute('max', nextWeekDate)
+  }
+
+  </script>
+  <link rel="stylesheet" href="static/style.css">
+</Head>
+<body>
+<center>
+  <h1>Prediction of Electricity demand </h1>
+  <h2>Select either the average daily temperature if you know the temperature or pick a date for the forecast</h2>
+  <form method="POST">
+
+      <label>Temperature:</label>
+      <input type="text" name="temperature" placeholder="average daily temp">
+      <br><h2>OR</h2>
+
+      <br><label for="date">Choose a date:</label>
+      <br><body onload="validDate()">
+<div class="form-group" method="POST">
+            
+            <input type="date" name="date" id="date" class="form-control input-sm " />
+          </div>
+</body>
+      
+      <br><input type="submit">
+  </form>
+  <br>
+  <br>
+  <div class='last_text'>{{ prediction_text }}</div>
+</center>
+</body>
+
+
+
